@@ -1,0 +1,7 @@
+TEAM_ID=
+
+PRODUCT_NAME=NeuroscienceAndroidDevice
+PRODUCT_BUNDLE_IDENTIFIER=com.ahuaman.neuroscienceandroiddevice.NeuroscienceAndroidDevice$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
