@@ -13,17 +13,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.ahuaman.neuroscienceandroiddevice.presentation.DeviceListViewModel
+import com.ahuaman.neuroscienceandroiddevice.presentation.DeviceUiState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 import neuroscienceandroiddevice.composeapp.generated.resources.Res
 import neuroscienceandroiddevice.composeapp.generated.resources.compose_multiplatform
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 @Preview
 fun App() {
-
-    val viewModel: TimeTravelViewModel by viewModels()
 
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }

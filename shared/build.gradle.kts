@@ -24,14 +24,17 @@ kotlin {
     
     sourceSets {
         all {
-            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            languageSettings {
+                optIn("kotlinx.cinterop.ExperimentalForeignApi")
+                optIn("kotlin.experimental.ExperimentalObjCName")
+            }
         }
         commonMain.dependencies {
             // Core coroutines + Flow / StateFlow / SharedFlow
             implementation(libs.kotlinx.coroutines.core)
 
             //ViewModel KMP
-            implementation(libs.kmp.observableviewmodel.core)
+            api(libs.kmp.observableviewmodel.core)
 
             implementation(libs.koin.core)
 

@@ -8,9 +8,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import com.juul.kable.Scanner
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlin.time.Duration.Companion.seconds
 
 class BleRepositoryImpl(
     //TODO: Inject dependencies here
@@ -38,6 +40,15 @@ class BleRepositoryImpl(
         // Clear previous devices
         foundDevicesMap.clear()
 
+        //Simulate
+        delay(1.seconds)
+        _scannedDevices.value = listOf(
+            BluetoothDevice(id = "1", name = "Device 1", rssi = -50),
+            BluetoothDevice(id = "2", name = "Device 2", rssi = -60),
+            BluetoothDevice(id = "3", name = "Device 3", rssi = -70),
+        )
+
+        delay(15.seconds)
         _scannedDevices.value = emptyList()
 
         scanJob = scanner
