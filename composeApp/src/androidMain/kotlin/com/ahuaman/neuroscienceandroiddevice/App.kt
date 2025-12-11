@@ -22,6 +22,9 @@ import neuroscienceandroiddevice.composeapp.generated.resources.compose_multipla
 @Composable
 @Preview
 fun App() {
+
+    val viewModel: TimeTravelViewModel by viewModels()
+
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
         Column(

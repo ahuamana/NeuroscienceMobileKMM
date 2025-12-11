@@ -2,9 +2,9 @@ package com.ahuaman.neuroscienceandroiddevice.presentation
 
 import com.ahuaman.neuroscienceandroiddevice.domain.usecase.ObserveScannedDevicesUseCase
 import com.ahuaman.neuroscienceandroiddevice.domain.usecase.ToggleScanUseCase
+import com.rickclephas.kmp.observableviewmodel.MutableStateFlow
 import com.rickclephas.kmp.observableviewmodel.ViewModel
 import com.rickclephas.kmp.observableviewmodel.launch
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class DeviceListViewModel(
@@ -13,8 +13,8 @@ class DeviceListViewModel(
 ):  ViewModel(){
     //UIState
 
-    private val _state = MutableStateFlow(DeviceUiState())
-    val state = _state.asStateFlow()
+    private val _state = MutableStateFlow<DeviceUiState?>(viewModelScope, null)
+    val state = _state.asStateFlow() // TODO: Integrate @NativeCoroutinesState to support cancellations in SwiftUI
 
     init {
         observeDevices()
@@ -23,18 +23,18 @@ class DeviceListViewModel(
     private fun observeDevices() {
         viewModelScope.launch {
             observeScannedDevicesUseCase().collect { devices ->
-                _state.value = _state.value.copy(devices = devices)
+                _state.value = _state.value?.copy(devices = devices)
             }
         }
     }
 
     fun onScanClicked() {
         viewModelScope.launch {
-            val isCurrentlyScanning = _state.value.isScanning
-            toggleScanUseCase(isCurrentlyScanning)
+            val isCurrentlyScanning = _state.value?.isScanning
+            toggleScanUseCase(isCurrentlyScanning == true)
 
             //Optimistic update of scanning state -- TODO: Update based on actual scan state from repository
-            _state.value = _state.value.copy(isScanning = !isCurrentlyScanning)
+            _state.value = _state.value?.copy(isScanning = isCurrentlyScanning != true)
         }
     }
 }
