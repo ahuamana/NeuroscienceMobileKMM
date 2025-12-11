@@ -12,9 +12,13 @@ androidx-testExt = "1.3.0"
 composeMultiplatform = "1.9.3"
 junit = "4.13.2"
 kotlin = "2.2.21"
+
 coroutines = "1.10.2"
 kmpObservableViewModel = "1.0.0"
 koinVersion = "4.1.1"
+
+#Kable to handle bluetooth in multiplatform projects
+kableVersion = "0.30.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -33,6 +37,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 kmp-observableviewmodel-core = { module = "com.rickclephas.kmp:kmp-observableviewmodel-core", version.ref = "kmpObservableViewModel" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinVersion" }
+kable-kmm = { module = "com.juul.kable:core", version.ref = "kableVersion" }
 
 
 [plugins]

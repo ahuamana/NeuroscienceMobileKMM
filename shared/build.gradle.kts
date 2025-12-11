@@ -35,6 +35,8 @@ kotlin {
 
             implementation(libs.koin.core)
 
+            implementation(libs.kable.kmm)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
