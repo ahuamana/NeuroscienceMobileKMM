@@ -23,8 +23,18 @@ kotlin {
     }
     
     sourceSets {
+        all {
+            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+        }
         commonMain.dependencies {
-            // put your Multiplatform dependencies here
+            // Core coroutines + Flow / StateFlow / SharedFlow
+            implementation(libs.kotlinx.coroutines.core)
+
+            //ViewModel KMP
+            implementation(libs.kmp.observableviewmodel.core)
+
+            implementation(libs.koin.core)
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
